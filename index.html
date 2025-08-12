@@ -1,4 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Latent rhythm transformation of drum recordings — Late-Breaking Demo</title>
+  <meta name="description" content="Audio examples and figures accompanying the late-breaking demo on latent rhythm transformation of drum recordings." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --bg-soft: #11131a;
+      --card: #141827;
+      --text: #e8ebf2;
+      --muted: #a7afc6;
+      --brand: #7c79ff;
+      --brand-2: #22d3ee;
+      --ring: rgba(124,121,255,0.55);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    [data-theme="light"]{
+      --bg: #fafafa;
+      --bg-soft: #f3f5fb;
+      --card: #ffffff;
+      --text: #171923;
+      --muted: #4b5563;
+      --brand: #4f46e5;
+      --brand-2: #0891b2;
+      --ring: rgba(79,70,229,0.35);
+      --shadow: 0 10px 26px rgba(2,6,23,0.08);
+    }
+
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 8% -10%, rgba(124,121,255,0.18), transparent 60%),
+        radial-gradient(900px 600px at 92% 0%, rgba(34,211,238,0.18), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    .container{ width: min(1100px, 92vw); margin: 0 auto; }
+
+    /* Header */
+    .nav{ position: sticky; top:0; z-index:50; backdrop-filter: saturate(140%) blur(10px);
+      background: linear-gradient(180deg, rgba(8,10,16,0.9), rgba(8,10,16,0.55));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:800; letter-spacing:0.2px; }
+    .logo{ width:28px; height:28px; border-radius:10px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+    .links{ display:flex; align-items:center; gap:14px; }
+    .links a{ color: var(--muted); text-decoration:none; font-weight:600; font-size:14px; }
+    .links a:hover{ color: var(--text); }
+    .toggle{ border:1px solid rgba(255,255,255,0.12); padding:8px 12px; border-radius: 999px; cursor:pointer; background:transparent; color:var(--text); font-weight:600; }
+
+    /* Hero */
+    .hero{ padding: 60px 0 24px; }
+    .kicker{ text-transform: uppercase; letter-spacing: 0.18em; font-weight:800; font-size:12px; color: var(--muted); }
+    h1.title{ font-size: clamp(28px, 4vw, 44px); line-height:1.08; margin: 10px 0 12px; letter-spacing:-0.4px; }
+    .subtitle{ font-size: clamp(15px, 2vw, 18px); color:var(--muted); }
+    .authors{ margin-top: 12px; color: var(--muted); font-size: 15px; }
+    .pills{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .pill{ padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); color: var(--text); text-decoration:none; font-weight:600; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); }
+
+    /* Section */
+    .section{ padding: 22px 0; }
+    .section h2{ font-size: 22px; margin: 10px 0 12px; letter-spacing:0.2px; }
+
+    /* Cards */
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card{ grid-column: span 12; background: radial-gradient(160% 140% at 0% 0%, rgba(124,121,255,0.06), transparent 40%), var(--card);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+    @media (min-width: 720px){ .card{ grid-column: span 6; } }
+    @media (min-width: 1024px){ .card{ grid-column: span 4; } }
+    .card h3{ margin: 2px 0 6px; font-size: 16px; }
+    .card p{ margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 6px 0 12px; }
+    .tag{ font-size:12px; border:1px solid rgba(255,255,255,0.14); padding:4px 8px; border-radius:999px; color:var(--muted); }
+    audio{ width: 100%; height: 36px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+
+    /* Abstract */
+    .abstract{ background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 16px; }
+
+    /* Footer */
+    footer{ padding: 40px 0 60px; color: var(--muted); font-size: 14px; }
+
+    /* Focus & a11y */
+    a, button { outline: none; }
+    a:focus, button:focus { box-shadow: 0 0 0 3px var(--ring); border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Latent Rhythm — LBD</span>
+      </a>
+      <div class="links">
+        <a href="#audio">Audio</a>
+        <a href="#abstract">Abstract</a>
+        <button id="themeToggle" class="toggle" aria-label="Toggle theme">Toggle Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <span class="kicker">Late-Breaking Demo</span>
+      <h1 class="title">Latent rhythm transformation of drum recordings</h1>
+      <p class="subtitle">Audio examples and figures accompanying the paper. Headphones recommended.</p>
+      <p class="authors">Jason Hockman · Jake Drysdale</p>
+      <div class="pills">
+        <a class="pill" href="paper.pdf" target="_blank" rel="noopener">📄 Paper PDF</a>
+        <a class="pill" href="poster.pdf" target="_blank" rel="noopener">🖼️ Poster</a>
+        <a class="pill" href="https://github.com/USER/REPO" target="_blank" rel="noopener">💾 Code</a>
+      </div>
+    </section>
+
+    <section id="abstract" class="section">
+      <h2>Abstract</h2>
+      <div class="abstract">
+        <p>A method is proposed for rhythm style transfer of multitimbral drum recordings via conditioning a VAE on rhythm and timbral features. Modulation and estimation of latent parameters and a novel resequencing process for reconstruction loss result in an end-to-end transformation circumventing manual segmentation and alignment.</p>
+      </div>
+    </section>
+
+    <section id="audio" class="section">
+      <h2>Audio Examples</h2>
+      <p class="subtitle">Each example provides three players: <strong>Source</strong> (original input), <strong>Target</strong> (style reference), and <strong>Reconstruction</strong> (model output). These are placeholders—replace the files in <code>assets/audio/</code> with your real data.</p>
+
+      <style>
+        .players{ display:grid; grid-template-columns: 1fr; gap:12px; margin-top:10px; }
+        .player{ background: var(--bg-soft); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; }
+        .player label{ display:block; font-weight:700; font-size:13px; color:var(--muted); margin-bottom:6px; letter-spacing:0.02em; }
+        @media (min-width: 720px){ .players{ grid-template-columns: repeat(3, 1fr); } }
+      </style>
+
+      <div class="grid">
+        <!-- Example 1 -->
+        <article class="card">
+          <h3>Example 1 — Jungle Break Resequencing</h3>
+          <div class="tags">
+            <span class="tag">120 BPM</span>
+            <span class="tag">Amen-derived</span>
+            <span class="tag">Placeholder</span>
+          </div>
+          <div class="players">
+            <div class="player">
+              <label>Source</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex1_source.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div class="player">
+              <label>Target</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex1_target.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div class="player">
+              <label>Reconstruction</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex1_recon.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+          </div>
+        </article>
+
+        <!-- Example 2 -->
+        <article class="card">
+          <h3>Example 2 — Drum Machine → Breakbeat</h3>
+          <div class="tags">
+            <span class="tag">128 BPM</span>
+            <span class="tag">Style transfer</span>
+            <span class="tag">Placeholder</span>
+          </div>
+          <div class="players">
+            <div class="player">
+              <label>Source</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex2_source.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div class="player">
+              <label>Target</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex2_target.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div class="player">
+              <label>Reconstruction</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex2_recon.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+          </div>
+        </article>
+
+        <!-- Example 3 -->
+        <article class="card">
+          <h3>Example 3 — Robustness to Mic Bleed</h3>
+          <div class="tags">
+            <span class="tag">110 BPM</span>
+            <span class="tag">Live kit</span>
+            <span class="tag">Placeholder</span>
+          </div>
+          <div class="players">
+            <div class="player">
+              <label>Source</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex3_source.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div class="player">
+              <label>Target</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex3_target.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div class="player">
+              <label>Reconstruction</label>
+              <audio controls preload="none">
+                <source src="assets/audio/ex3_recon.mp3" type="audio/mpeg" />
+              </audio>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <section class="conference-info">
+      <h3>Conference Information</h3>
+      <p><strong>Conference:</strong> Audio Engineering Society</p>
+      <p><strong>Event:</strong> AES International Conference on Artificial Intelligence and Machine Learning for Audio</p>
+      <p><strong>Date:</strong> September 8–10, 2025</p>
+      <p><strong>Location:</strong> London, UK</p>
+    </section>
+
+    <section class="bibtex">
+      <h3>BibTeX</h3>
+      <pre><code>@inproceedings{hockman2025latent,
+  title     = {Latent rhythm transformation of drum recordings},
+  author    = {Hockman, Jason and Drysdale, Jake},
+  booktitle = {Late-Breaking Demo at the AES International Conference on Artificial Intelligence and Machine Learning for Audio},
+  year      = {2025},
+  address   = {London, UK},
+  month     = {September 8--10},
+  organization = {Audio Engineering Society},
+  url       = {https://USER.github.io/REPO}
+}</code></pre>
+
+    <footer class="container">
+      <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
+        <span>© 2025 Authors. Audio examples for research dissemination.</span>
+        <a class="pill" href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Theme toggle (persists to localStorage)
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+    toggle.addEventListener('click', () => {
+      const next = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -60,3 +342,4 @@
 
 </body>
 </html>
+ -->
