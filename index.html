@@ -1,1 +1,54 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Examples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+    }
+    .audio-card {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    audio {
+      width: 100%;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Audio Examples</h1>
+
+  <div class="audio-card">
+    <h3>Original Source</h3>
+    <audio controls>
+      <source src="audio/06_source.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <div class="audio-card">
+    <h3>Target</h3>
+    <audio controls>
+      <source src="audio/06_target.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <div class="audio-card">
+    <h3>Reconstruction (Epoch 55)</h3>
+    <audio controls>
+      <source src="audio/06_recon_epoch_55.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+</body>
+</html>
