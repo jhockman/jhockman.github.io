@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Archivist — audio examples</title>
+  <meta name="description" content="Audio examples and supporting media for The Archivist, a performance sampling instrument for the Noise Engineering Versio platform." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --bg-soft: #11131a;
+      --card: #141827;
+      --text: #e8ebf2;
+      --muted: #a7afc6;
+      --brand: #b3164d;
+      --brand-2: #e0a26b;
+      --ring: rgba(179,22,77,0.55);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    [data-theme="light"]{
+      --bg: #fafafa;
+      --bg-soft: #f3f5fb;
+      --card: #ffffff;
+      --text: #171923;
+      --muted: #4b5563;
+      --brand: #b3164d;
+      --brand-2: #b4753c;
+      --ring: rgba(179,22,77,0.35);
+      --shadow: 0 10px 26px rgba(2,6,23,0.08);
+    }
+
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 8% -10%, rgba(179,22,77,0.16), transparent 60%),
+        radial-gradient(900px 600px at 92% 0%, rgba(224,162,107,0.14), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    .container{ width: min(1100px, 92vw); margin: 0 auto; }
+
+    /* Header */
+    .nav{ position: sticky; top:0; z-index:50; backdrop-filter: saturate(140%) blur(10px);
+      background: linear-gradient(180deg, rgba(8,10,16,0.9), rgba(8,10,16,0.55));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    [data-theme="light"] .nav{ background: linear-gradient(180deg, rgba(250,250,250,0.92), rgba(250,250,250,0.7)); border-bottom-color: rgba(0,0,0,0.06); }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-weight:800; letter-spacing:0.2px; }
+    .logo{ width:28px; height:28px; border-radius:10px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow); }
+    .links{ display:flex; align-items:center; gap:14px; }
+    .links a{ color: var(--muted); text-decoration:none; font-weight:600; font-size:14px; }
+    .links a:hover{ color: var(--text); }
+    .toggle{ border:1px solid rgba(255,255,255,0.12); padding:8px 12px; border-radius: 999px; cursor:pointer; background:transparent; color:var(--text); font-weight:600; }
+
+    /* Hero */
+    .hero{ padding: 60px 0 24px; }
+    .kicker{ text-transform: uppercase; letter-spacing: 0.18em; font-weight:800; font-size:12px; color: var(--muted); }
+    h1.title{ font-size: clamp(28px, 4vw, 44px); line-height:1.08; margin: 10px 0 12px; letter-spacing:-0.4px; }
+    .subtitle{ font-size: clamp(15px, 2vw, 18px); color:var(--muted); }
+    .authors{ margin-top: 12px; color: var(--muted); font-size: 15px; }
+    .pills{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 18px; }
+    .pill{ padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,0.12); color: var(--text); text-decoration:none; font-weight:600; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); }
+    [data-theme="light"] .pill, [data-theme="light"] .toggle{ border-color: rgba(0,0,0,0.14); }
+
+    /* Section */
+    .section{ padding: 22px 0; }
+    .section h2{ font-size: 22px; margin: 10px 0 12px; letter-spacing:0.2px; }
+
+    /* Cards: one per portfolio section, full width */
+    .grid{ display:grid; grid-template-columns: 1fr; gap: 18px; }
+    .card{ background: radial-gradient(160% 140% at 0% 0%, rgba(179,22,77,0.06), transparent 40%), var(--card);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 16px 16px 14px; box-shadow: var(--shadow); scroll-margin-top: 80px; }
+    [data-theme="light"] .card{ border-color: rgba(0,0,0,0.08); }
+    .card h3{ margin: 2px 0 6px; font-size: 17px; }
+    .card p{ margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+    .tags{ display:flex; flex-wrap:wrap; gap:8px; margin: 6px 0 12px; }
+    .tag{ font-size:12px; border:1px solid rgba(255,255,255,0.14); padding:4px 8px; border-radius:999px; color:var(--muted); }
+    [data-theme="light"] .tag{ border-color: rgba(0,0,0,0.14); }
+    audio{ width: 100%; height: 36px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.25)); }
+
+    /* Abstract */
+    .abstract{ background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 16px; }
+    [data-theme="light"] .abstract{ border-color: rgba(0,0,0,0.08); }
+    .abstract p{ margin:0; line-height:1.55; }
+
+    /* Audio players layout: 2 up on ≥720px, 3 up on ≥1024px, stacked on mobile */
+    .players{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px; }
+    @media (min-width:720px){ .players{ grid-template-columns:repeat(2,1fr); } }
+    @media (min-width:1024px){ .players.three{ grid-template-columns:repeat(3,1fr); } }
+    .player{ background: var(--bg-soft); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; }
+    [data-theme="light"] .player{ border-color: rgba(0,0,0,0.08); }
+    .player label{ display:block; font-weight:700; font-size:13px; color:var(--muted); margin-bottom:6px; letter-spacing:0.02em; }
+    .player small{ display:block; color:var(--muted); font-size:12px; margin-top:6px; }
+
+    /* Dissemination list */
+    .list{ margin:0; padding:0; list-style:none; display:grid; gap:10px; }
+    .list li{ background: var(--bg-soft); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px 14px; font-size:14px; }
+    [data-theme="light"] .list li{ border-color: rgba(0,0,0,0.08); }
+    .list li strong{ display:block; margin-bottom:2px; }
+    .list a{ color: var(--text); }
+
+    /* Footer */
+    footer{ padding: 40px 0 60px; color: var(--muted); font-size: 14px; }
+
+    /* Focus & a11y */
+    a, button { outline: none; }
+    a:focus, button:focus { box-shadow: 0 0 0 3px var(--ring); border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="logo" aria-hidden="true"></span>
+        <span>The Archivist — DTND</span>
+      </a>
+      <div class="links">
+        <a href="#audio">Audio</a>
+        <a href="#about">About</a>
+        <a href="https://github.com/jhockman/the-archivist" target="_blank" rel="noopener">Firmware</a>
+        <button id="themeToggle" class="toggle" aria-label="Toggle theme">Toggle Theme</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero">
+      <span class="kicker">Noise Engineering Versio · Detuned Transmissions</span>
+      <h1 class="title">The Archivist</h1>
+      <p class="subtitle">Retention, recollection and degradation in a performance audio sampling instrument. Audio examples and supporting media accompanying the research portfolio.</p>
+      <p class="authors">Jason Hockman · School of Digital Arts, Manchester Metropolitan University</p>
+      <div class="pills">
+        <a class="pill" href="https://github.com/jhockman/the-archivist" target="_blank" rel="noopener">💾 Firmware &amp; manual</a>
+        <a class="pill" href="http://asff.co.uk/festival" target="_blank" rel="noopener">🎬 Worm Charming at Aesthetica</a>
+        <!-- Add the workshop paper here once the PDF is in this folder:
+        <a class="pill" href="hockman-2026-the-archivist-dmrn21.pdf" target="_blank" rel="noopener">📄 DMRN+21 paper</a>
+        -->
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <div class="abstract">
+        <p><strong>The Archivist</strong> is a practice-based research project comprising and surrounding the development of performance firmware for the Noise Engineering Versio Eurorack platform, with documentation, audio examples and a film collaboration. It proposes a model of sampling as memory, in which captured sound is organised into retention strata and degraded through historically grounded emulations of antiquated tape machines and media and digital samplers.</p>
+      </div>
+    </section>
+
+    <section id="audio" class="section">
+      <h2>Audio examples</h2>
+      <p class="subtitle">Grouped by the portfolio page they support. Links in the portfolio point directly at these sections.</p>
+
+      <div class="grid">
+
+        <!-- p.12 Iterative development -->
+        <article class="card" id="iterative-development">
+          <h3>Iterative development</h3>
+          <div class="tags"><span class="tag">Portfolio p.12</span><span class="tag">Genamorph</span><span class="tag">Motus Diversi Versio</span></div>
+          <p>The two prototypes that preceded The Archivist: a Max/MSP granular instrument (2024–25) and the first Versio firmware (2025).</p>
+          <div class="players">
+            <div class="player"><label>Genamorph (Max/MSP prototype, 2024–25)</label><audio controls preload="none"><source src="p12_genamorph_example.wav" type="audio/wav" /></audio></div>
+            <div class="player"><label>Motus Diversi Versio (firmware prototype, 2025)</label><audio controls preload="none"><source src="p12_motus_diversi.wav" type="audio/wav" /></audio></div>
+          </div>
+        </article>
+
+        <!-- p.15 GRAINS retention strata -->
+        <article class="card" id="grains-strata">
+          <h3>GRAINS: retention strata</h3>
+          <div class="tags"><span class="tag">Portfolio p.15</span><span class="tag">GRAINS</span></div>
+          <p>Reaching back through the strata: the same capture returned over a longer span at a lower sample rate.</p>
+          <div class="players">
+            <div class="player"><label>Stratum 4 (12 kHz, 4 bars) · K3 fade · reverb (R-K0) at maximum</label><audio controls preload="none"><source src="the-archivist-strata-4-k3-fade-rk0-max-reverb.mp3" type="audio/mpeg" /></audio></div>
+          </div>
+        </article>
+
+        <!-- p.22 Film sound design -->
+        <article class="card" id="film">
+          <h3>Film sound design: <em>Worm Charming</em> (Spriggs, 2026)</h3>
+          <div class="tags"><span class="tag">Portfolio p.22</span><span class="tag">Aesthetica Film Festival, 6 November 2026</span></div>
+          <p>Field recordings of worm environments granulated with The Archivist for the ground-level sequences of the film.</p>
+          <div class="players three">
+            <div class="player"><label>Excerpt 2</label><audio controls preload="none"><source src="p22_archivist_worm_charming_2.wav" type="audio/wav" /></audio></div>
+            <div class="player"><label>Excerpt 3</label><audio controls preload="none"><source src="p22_archivist_worm_charming_3.wav" type="audio/wav" /></audio></div>
+            <div class="player"><label>Excerpt 4</label><audio controls preload="none"><source src="p22_archivist_worm_charming_4.wav" type="audio/wav" /></audio></div>
+          </div>
+        </article>
+
+        <!--
+        Sections the portfolio's remaining finger links expect. Uncomment each one when its file is in this folder,
+        keeping the id so the link from the PDF lands here.
+
+        <article class="card" id="grains-engine">
+          <h3>GRAINS: modeless continuum</h3>
+          <div class="tags"><span class="tag">Portfolio p.14</span></div>
+          <p>Reconstruction, pitch shifting, time scaling and clouds as regions of one control space.</p>
+          <div class="players">
+            <div class="player"><label>Continuum</label><audio controls preload="none"><source src="p14_grains_continuum.mp3" type="audio/mpeg" /></audio></div>
+          </div>
+        </article>
+
+        <article class="card" id="tape-strata">
+          <h3>TAPE: retention strata</h3>
+          <div class="tags"><span class="tag">Portfolio p.18</span></div>
+          <p>The eight cassette conditions, from 15 kHz over one bar to 1.5 kHz over twelve.</p>
+          <div class="players">
+            <div class="player"><label>Strata 1–8</label><audio controls preload="none"><source src="p18_tape_strata.mp3" type="audio/mpeg" /></audio></div>
+          </div>
+        </article>
+
+        <article class="card" id="disintegration">
+          <h3>TAPE: disintegration</h3>
+          <div class="tags"><span class="tag">Portfolio p.19</span></div>
+          <p>A capture wearing with playback: level loss, treble loss and dropouts.</p>
+          <div class="players">
+            <div class="player"><label>WEAR 1.0</label><audio controls preload="none"><source src="p19_disintegration.mp3" type="audio/mpeg" /></audio></div>
+          </div>
+        </article>
+        -->
+
+      </div>
+    </section>
+
+    <section id="dissemination" class="section">
+      <h2>Release and presentation</h2>
+      <ul class="list">
+        <li><strong>Public release</strong> v1.0 firmware (.bin) and manual, free to install on Versio: <a href="https://github.com/jhockman/the-archivist" target="_blank" rel="noopener">github.com/jhockman/the-archivist</a></li>
+        <li><strong>Film premiere</strong> <em>Worm Charming</em> (Spriggs, 2026), with the author as credited collaborator for sound design. Aesthetica Film Festival, York: Listening Pitch: Film, 6 November 2026.</li>
+        <li><strong>DMRN+21</strong> <em>The Archivist</em> (Hockman, 2026). Digital Music Research Network One-day Workshop, King's College London, 11 December 2026.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div style="display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap;">
+        <span>© 2026 Jason Hockman. Audio examples for research dissemination.</span>
+        <a class="pill" href="#top">Back to top ↑</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Theme toggle (persists to localStorage; guarded for private windows)
+    const toggle = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    try { const saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+    toggle.addEventListener('click', () => {
+      const next = (root.getAttribute('data-theme') === 'dark') ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
