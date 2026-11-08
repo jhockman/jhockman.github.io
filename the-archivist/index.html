@@ -95,7 +95,8 @@
     .players{ display:grid; grid-template-columns:1fr; gap:12px; margin-top:10px; }
     @media (min-width:720px){ .players{ grid-template-columns:repeat(2,1fr); } }
     @media (min-width:1024px){ .players.three{ grid-template-columns:repeat(3,1fr); } }
-    .player{ background: var(--bg-soft); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; }
+    .player{ display:flex; flex-direction:column; background: var(--bg-soft); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; }
+    .player audio{ margin-top:auto; }
     [data-theme="light"] .player{ border-color: rgba(0,0,0,0.08); }
     .player label{ display:block; font-weight:700; font-size:13px; color:var(--muted); margin-bottom:6px; letter-spacing:0.02em; }
     .player small{ display:block; color:var(--muted); font-size:12px; margin-top:6px; }
